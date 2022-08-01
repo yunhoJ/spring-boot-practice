@@ -2,6 +2,7 @@ package com.programming.dmaker.entity;
 
 import com.programming.dmaker.type.DeveloperLevel;
 import com.programming.dmaker.type.DeveloperSkillType;
+import com.programming.dmaker.type.StatusCode;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -27,6 +28,9 @@ public class Developer {
 
     @Enumerated(EnumType.STRING)
     private DeveloperSkillType developerSkillType;
+
+    @Enumerated(EnumType.STRING)
+    private StatusCode statusCode;
 
     private Integer experienceYears;
     private String memberID;

@@ -56,4 +56,8 @@ public class DmakerController {
     public DeveloperDetailDto editDeveloper(@PathVariable String memberId, @Valid @RequestBody EditDeveloper.Request request){
         return dMakerService.EditDeveloper(memberId,request);
     }
+    @DeleteMapping("/developers/{memberId}")
+    public DeveloperDetailDto detailDeveloper(@PathVariable String memberId){
+        return dMakerService.DeleteDeverloper(memberId);
+    }
 }

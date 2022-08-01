@@ -1,18 +1,15 @@
 package com.programming.dmaker.controller;
 
-import com.programming.dmaker.dto.CreateDeveloper;
-import com.programming.dmaker.dto.DeveloperDetailDto;
-import com.programming.dmaker.dto.DeveloperDto;
-import com.programming.dmaker.dto.EditDeveloper;
-import com.programming.dmaker.entity.Developer;
+import com.programming.dmaker.dto.*;
 import com.programming.dmaker.service.DMakerService;
+import exception.DMakerException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 //사용자 입력이 최초로 받아지는곳
 
@@ -59,5 +56,17 @@ public class DmakerController {
     @DeleteMapping("/developers/{memberId}")
     public DeveloperDetailDto detailDeveloper(@PathVariable String memberId){
         return dMakerService.DeleteDeverloper(memberId);
+    }
+
+
+    //    예외처리
+    @ResponseStatus(value = HttpStatus.CONFLICT)//400대 상태 반환
+    @ExceptionHandler(DMakerException.class)
+    public DmakerErrorResponse handlerException(DMakerException e, HttpServletRequest request)
+    {
+        log.error("errorCode:{},url:{},message:{}",e.getDMakerErrorCode(),request.getRequestURI(),e.getDetailMessage() );
+        return DmakerErrorResponse.builder()
+                .errorCode(e.getDMakerErrorCode())
+                .errorMessage(e.getMessage()).build();
     }
 }

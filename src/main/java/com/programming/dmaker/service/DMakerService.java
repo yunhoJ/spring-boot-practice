@@ -1,9 +1,6 @@
 package com.programming.dmaker.service;
 
-import com.programming.dmaker.dto.CreateDeveloper;
-import com.programming.dmaker.dto.DeveloperDetailDto;
-import com.programming.dmaker.dto.DeveloperDto;
-import com.programming.dmaker.dto.EditDeveloper;
+import com.programming.dmaker.dto.*;
 import com.programming.dmaker.entity.Developer;
 import com.programming.dmaker.entity.RetiredDeveloper;
 import com.programming.dmaker.repository.DeveloperRepository;
@@ -14,8 +11,7 @@ import exception.DMakerException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +24,7 @@ import static exception.DMakerErrorCode.*;
 public class DMakerService {
     private final DeveloperRepository developerRepository;//자동으로 인젝션 해줌
     private final RetiredDeveloperRepository retiredDeveloperRepository;
-    private final EntityManager em;
+
     @Transactional
     public CreateDeveloper.Response createDeveloper(CreateDeveloper.Request request) {
         validationCreateDeveloperRequest(request);
@@ -121,4 +117,5 @@ public class DMakerService {
         return DeveloperDetailDto.fromEntity(developer);
 
     }
+
 }

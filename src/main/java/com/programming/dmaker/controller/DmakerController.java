@@ -2,7 +2,7 @@ package com.programming.dmaker.controller;
 
 import com.programming.dmaker.dto.*;
 import com.programming.dmaker.service.DMakerService;
-import exception.DMakerException;
+import com.programming.dmaker.exception.DMakerException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -58,7 +58,7 @@ public class DmakerController {
         return dMakerService.DeleteDeverloper(memberId);
     }
 
-
+/*
     //    예외처리
     @ResponseStatus(value = HttpStatus.CONFLICT)//400대 상태 반환
     @ExceptionHandler(DMakerException.class)
@@ -68,5 +68,6 @@ public class DmakerController {
         return DmakerErrorResponse.builder()
                 .errorCode(e.getDMakerErrorCode())
                 .errorMessage(e.getMessage()).build();
-    }
+//        컨트롤러가 많아질수록 exception헨들러를 모든 클레스에 집어 넣기 힘듬 -> global exception 핸들러를 이용해 처리함
+    }*/
 }

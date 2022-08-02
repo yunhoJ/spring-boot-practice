@@ -7,16 +7,15 @@ import com.programming.dmaker.repository.DeveloperRepository;
 import com.programming.dmaker.repository.RetiredDeveloperRepository;
 import com.programming.dmaker.type.DeveloperLevel;
 import com.programming.dmaker.type.StatusCode;
-import exception.DMakerException;
+import com.programming.dmaker.exception.DMakerException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static exception.DMakerErrorCode.*;
+import static com.programming.dmaker.exception.DMakerErrorCode.*;
 
 
 @Service

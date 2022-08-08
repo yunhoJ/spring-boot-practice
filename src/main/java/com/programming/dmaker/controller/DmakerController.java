@@ -19,6 +19,7 @@ import java.util.List;
 public class DmakerController {
     private final DMakerService dMakerService;
 
+
     /*
      *        DMakerController(Bean)     DMakerService(Bean)       DeveloperRepository(Bean)
      * ======================Spring Application Context==============================================위에 동작
@@ -32,8 +33,9 @@ public class DmakerController {
 //        uu
     }
     @GetMapping("/developers/{memberId}")
-    public DeveloperDetailDto getDeveloper(@PathVariable String memberId){
+    public DeveloperDetailDto getDeveloper(@PathVariable final String memberId){//request의 값이 변경되지 않도록 final
         log.info("GET /developer");
+
         return dMakerService.getDetailDeveloper(memberId);
     }
 
@@ -50,11 +52,11 @@ public class DmakerController {
 
     //수정 put 은 모든 정보 수정 patch 는 특정 정보 수정
     @PutMapping("/developers/{memberId}")
-    public DeveloperDetailDto editDeveloper(@PathVariable String memberId, @Valid @RequestBody EditDeveloper.Request request){
+    public DeveloperDetailDto editDeveloper(@PathVariable final String memberId, @Valid @RequestBody EditDeveloper.Request request){
         return dMakerService.EditDeveloper(memberId,request);
     }
     @DeleteMapping("/developers/{memberId}")
-    public DeveloperDetailDto detailDeveloper(@PathVariable String memberId){
+    public DeveloperDetailDto detailDeveloper(@PathVariable final String memberId){
         return dMakerService.DeleteDeverloper(memberId);
     }
 
